@@ -35,7 +35,7 @@ pipeline {
                 stage('Clone repository') {
                     steps {
                         script {
-                            if(env.GIT_BRANCH=='origin/dev'){
+                            if(env.GIT_BRANCH=='origin/Producao'){
                                 checkout scm
                             }
                             sh('printenv | sort')
@@ -71,7 +71,7 @@ pipeline {
                     steps {
                         echo 'Push latest para AWS ECR'
                         script {
-                            docker.withRegistry('https://933273154934.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:awsdvops') {
+                            docker.withRegistry('https://185721683284.dkr.ecr.us-east-1.amazonaws.com/digitalhouse-grupolovelace', 'ecr:us-east-1:awsdvops') {
                                 docker.image('digitalhouse-grupolovelace').push()
                             }
                         }
@@ -119,7 +119,7 @@ pipeline {
 
             steps { 
                 script {
-                    if(env.GIT_BRANCH=='origin/producao'){
+                    if(env.GIT_BRANCH=='origin/Producao'){
  
                         environment {
 
@@ -134,7 +134,7 @@ pipeline {
                         }
 
 
-                        docker.withRegistry('https://933273154934.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:awsdvops') {
+                        docker.withRegistry('https://185721683284.dkr.ecr.us-east-1.amazonaws.com/digitalhouse-grupolovelace', 'ecr:us-east-1:awsdvops') {
                             docker.image('digitalhouse-grupolovelace').pull()
                         }
 
