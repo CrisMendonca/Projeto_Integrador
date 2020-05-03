@@ -4,11 +4,11 @@ pipeline {
 
     environment {
 
-        NODE_ENV="development"
+        NODE_ENV="homologacao"
         AWS_ACCESS_KEY=""
         AWS_SECRET_ACCESS_KEY=""
         AWS_SDK_LOAD_CONFIG="0"
-        BUCKET_NAME="app-digital"
+        BUCKET_NAME="digitalhouse-grupolovelace-homologacao"
         REGION="us-east-1" 
         PERMISSION=""
         ACCEPTED_FILE_FORMATS_ARRAY=""
@@ -27,7 +27,7 @@ pipeline {
         stage("Build, Test and Push Docker Image") {
             agent {  
                 node {
-                    label 'master'
+                    label 'homologacao'
                 }
             }
             stages {
@@ -35,7 +35,7 @@ pipeline {
                 stage('Clone repository') {
                     steps {
                         script {
-                            if(env.GIT_BRANCH=='origin/Producao'){
+                            if(env.GIT_BRANCH=='origin/Jenkins-pipeline'){
                                 checkout scm
                             }
                             sh('printenv | sort')
@@ -89,7 +89,7 @@ pipeline {
 
             steps { 
                 script {
-                    if(env.GIT_BRANCH=='origin/homologacao'){
+                    if(env.GIT_BRANCH=='origin/Jenkins-pipeline'){
  
                         docker.withRegistry('https://933273154934.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:awsdvops') {
                             docker.image('digitalhouse-grupolovelace').pull()
@@ -99,7 +99,7 @@ pipeline {
                         sh "hostname"
                         sh "docker stop app1"
                         sh "docker rm app1"
-                        sh "docker run -d --name app1 -p 8030:3000 933273154934.dkr.ecr.us-east-1.amazonaws.com/digitalhouse-devops:latest"
+                        sh "docker run -d --name app1 -p 8030:3000 185721683284.dkr.ecr.us-east-1.amazonaws.com/digitalhouse-grupolovelace:latest"
                         sh "docker ps"
                         sh 'sleep 10'
                         sh 'curl http://127.0.0.1:8030/api/v1/healthcheck'
@@ -119,7 +119,7 @@ pipeline {
 
             steps { 
                 script {
-                    if(env.GIT_BRANCH=='origin/Producao'){
+                    if(env.GIT_BRANCH=='origin/Jenkins-pipeline'){
  
                         environment {
 
@@ -127,7 +127,7 @@ pipeline {
                             AWS_ACCESS_KEY="123456"
                             AWS_SECRET_ACCESS_KEY="asdfghjkkll"
                             AWS_SDK_LOAD_CONFIG="0"
-                            BUCKET_NAME="app-digital"
+                            BUCKET_NAME="digitalhouse-grupolovelace-producao"
                             REGION="us-east-1" 
                             PERMISSION=""
                             ACCEPTED_FILE_FORMATS_ARRAY=""
@@ -142,7 +142,7 @@ pipeline {
                         sh "hostname"
                         sh "docker stop app1"
                         sh "docker rm app1"
-                        sh "docker run -d --name app1 -p 8030:3000 933273154934.dkr.ecr.us-east-1.amazonaws.com/digitalhouse-grupolovelace:latest"
+                        sh "docker run -d --name app1 -p 8030:3000 185721683284.dkr.ecr.us-east-1.amazonaws.com/digitalhouse-grupolovelace:latest"
                         sh "docker ps"
                         sh 'sleep 10'
                         sh 'curl http://127.0.0.1:8030/api/v1/healthcheck'
