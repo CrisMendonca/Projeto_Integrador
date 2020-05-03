@@ -27,7 +27,7 @@ pipeline {
         stage("Build, Test and Push Docker Image") {
             agent {  
                 node {
-                    label 'homologacao'
+                    label 'master'
                 }
             }
             stages {
