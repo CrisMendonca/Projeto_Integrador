@@ -47,7 +47,7 @@ pipeline {
                     steps {
                         script {
                             print "Environment will be : ${env.NODE_ENV}"
-                            docker.build("digitalhouse-devops:latest")
+                            docker.build("digitalhouse-grupolovelace:latest")
                         }
                     }
                 }
@@ -56,7 +56,7 @@ pipeline {
                     steps {
                         script {
 
-                            docker.image("digitalhouse-devops:latest").withRun('-p 8030:3000') { c ->
+                            docker.image("digitalhouse-grupolovelace:latest").withRun('-p 8030:3000') { c ->
                                 sh 'docker ps'
                                 sh 'sleep 10'
                                 sh 'curl http://127.0.0.1:8030/api/v1/healthcheck'
@@ -72,7 +72,7 @@ pipeline {
                         echo 'Push latest para AWS ECR'
                         script {
                             docker.withRegistry('https://933273154934.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:awsdvops') {
-                                docker.image('digitalhouse-devops').push()
+                                docker.image('digitalhouse-grupolovelace').push()
                             }
                         }
                     }
@@ -92,7 +92,7 @@ pipeline {
                     if(env.GIT_BRANCH=='origin/homologacao'){
  
                         docker.withRegistry('https://933273154934.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:awsdvops') {
-                            docker.image('digitalhouse-devops').pull()
+                            docker.image('digitalhouse-grupolovelace').pull()
                         }
 
                         echo 'Deploy para Desenvolvimento'
@@ -135,14 +135,14 @@ pipeline {
 
 
                         docker.withRegistry('https://933273154934.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:awsdvops') {
-                            docker.image('digitalhouse-devops').pull()
+                            docker.image('digitalhouse-grupolovelace').pull()
                         }
 
                         echo 'Deploy para Desenvolvimento'
                         sh "hostname"
                         sh "docker stop app1"
                         sh "docker rm app1"
-                        sh "docker run -d --name app1 -p 8030:3000 933273154934.dkr.ecr.us-east-1.amazonaws.com/digitalhouse-devops:latest"
+                        sh "docker run -d --name app1 -p 8030:3000 933273154934.dkr.ecr.us-east-1.amazonaws.com/digitalhouse-grupolovelace:latest"
                         sh "docker ps"
                         sh 'sleep 10'
                         sh 'curl http://127.0.0.1:8030/api/v1/healthcheck'
