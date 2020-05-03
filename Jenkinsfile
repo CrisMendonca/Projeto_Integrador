@@ -80,16 +80,16 @@ pipeline {
             }
         }
 
-        stage('Deploy to DEV') {
+        stage('Deploy to homologacao') {
             agent {  
                 node {
-                    label 'dev'
+                    label 'homologacao'
                 }
             }
 
             steps { 
                 script {
-                    if(env.GIT_BRANCH=='origin/dev'){
+                    if(env.GIT_BRANCH=='origin/homologacao'){
  
                         docker.withRegistry('https://933273154934.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:awsdvops') {
                             docker.image('digitalhouse-devops').pull()
@@ -113,13 +113,13 @@ pipeline {
         stage('Deploy to Producao') {
             agent {  
                 node {
-                    label 'prod'
+                    label 'Producao'
                 }
             }
 
             steps { 
                 script {
-                    if(env.GIT_BRANCH=='origin/prod'){
+                    if(env.GIT_BRANCH=='origin/producao'){
  
                         environment {
 
