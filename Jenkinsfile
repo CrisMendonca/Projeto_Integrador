@@ -97,9 +97,9 @@ pipeline {
 
                         echo 'Deploy para Homologacao'
                         sh "hostname"
-                        sh "docker stop app1"
-                        sh "docker rm app1"
-                        sh "docker run -d --name app1 -p 8030:3000 185721683284.dkr.ecr.us-east-1.amazonaws.com/digitalhouse-grupolovelace:latest"
+                        sh "docker stop digitalhouse-grupolovelace"
+                        sh "docker rm digitalhouse-grupolovelace"
+                        sh "docker run -d --name digitalhouse-grupolovelace -p 8030:3000 185721683284.dkr.ecr.us-east-1.amazonaws.com/digitalhouse-grupolovelace:latest"
                         sh "docker ps"
                         sh 'sleep 10'
                         sh 'curl http://127.0.0.1:8030/api/v1/healthcheck'
@@ -140,9 +140,9 @@ pipeline {
 
                         echo 'Deploy para Desenvolvimento'
                         sh "hostname"
-                        sh "docker stop app1"
-                        sh "docker rm app1"
-                        sh "docker run -d --name app1 -p 8030:3000 185721683284.dkr.ecr.us-east-1.amazonaws.com/digitalhouse-grupolovelace:latest"
+                        sh "docker stop digitalhouse-grupolovelace"
+                        sh "docker rm digitalhouse-grupolovelace"
+                        sh "docker run -d --name digitalhouse-grupolovelace -p 8030:3000 185721683284.dkr.ecr.us-east-1.amazonaws.com/digitalhouse-grupolovelace:latest"
                         sh "docker ps"
                         sh 'sleep 10'
                         sh 'curl http://127.0.0.1:8030/api/v1/healthcheck'
