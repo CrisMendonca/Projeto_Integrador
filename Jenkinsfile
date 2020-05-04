@@ -95,7 +95,7 @@ pipeline {
                             docker.image('digitalhouse-grupolovelace').pull()
                         }
 
-                        echo 'Deploy para Desenvolvimento'
+                        echo 'Deploy para Homologacao'
                         sh "hostname"
                         sh "docker stop app1"
                         sh "docker rm app1"
@@ -123,9 +123,9 @@ pipeline {
  
                         environment {
 
-                            NODE_ENV="production"
-                            AWS_ACCESS_KEY="123456"
-                            AWS_SECRET_ACCESS_KEY="asdfghjkkll"
+                            NODE_ENV="Producao"
+                            AWS_ACCESS_KEY=""
+                            AWS_SECRET_ACCESS_KEY=""
                             AWS_SDK_LOAD_CONFIG="0"
                             BUCKET_NAME="digitalhouse-grupolovelace-producao"
                             REGION="us-east-1" 
