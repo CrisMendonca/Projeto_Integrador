@@ -91,7 +91,7 @@ pipeline {
                 script {
                     if(env.GIT_BRANCH=='origin/Jenkins-pipeline'){
  
-                        docker.withRegistry('https://933273154934.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:awsdvops') {
+                        docker.withRegistry('https://933273154934.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:awscredentials') {
                             docker.image('digitalhouse-grupolovelace').pull()
                         }
 
@@ -134,7 +134,7 @@ pipeline {
                         }
 
 
-                        docker.withRegistry('https://185721683284.dkr.ecr.us-east-1.amazonaws.com/digitalhouse-grupolovelace', 'ecr:us-east-1:awsdvops') {
+                        docker.withRegistry('https://185721683284.dkr.ecr.us-east-1.amazonaws.com/digitalhouse-grupolovelace', 'ecr:us-east-1:awscredentials') {
                             docker.image('digitalhouse-grupolovelace').pull()
                         }
 
