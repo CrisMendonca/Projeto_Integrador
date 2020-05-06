@@ -97,6 +97,8 @@ pipeline {
 
                         echo 'Deploy para Homologacao'
                         sh "hostname"
+                        sh "docker stop grupolovelace"
+                        sh "docker rm grupolovelace"
                         sh "docker run -d --name grupolovelace -p 8030:3000 185721683284.dkr.ecr.us-east-1.amazonaws.com/grupolovelace:latest"
                         sh "docker ps"
                         sh 'sleep 10'
@@ -138,6 +140,8 @@ pipeline {
 
                         echo 'Deploy para Desenvolvimento'
                         sh "hostname"
+                        sh "docker stop grupolovelace"
+                        sh "docker rm grupolovelace"
                         sh "docker run -d --name grupolovelace -p 8030:3000 185721683284.dkr.ecr.us-east-1.amazonaws.com/grupolovelace:latest"
                         sh "docker ps"
                         sh 'sleep 10'
