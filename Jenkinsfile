@@ -47,7 +47,7 @@ pipeline {
                     steps {
                         script {
                             print "Environment will be : ${env.NODE_ENV}"
-                            docker.build("digitalhouse-grupolovelace:latest")
+                            docker.build("grupolovelace:latest")
                         }
                     }
                 }
@@ -56,7 +56,7 @@ pipeline {
                     steps {
                         script {
 
-                            docker.image("digitalhouse-grupolovelace:latest").withRun('-p 8030:3000') { c ->
+                            docker.image("grupolovelace:latest").withRun('-p 8030:3000') { c ->
                                 sh 'docker ps'
                                 sh 'sleep 10'
                                 sh 'curl http://127.0.0.1:8030/api/v1/healthcheck'
@@ -72,7 +72,7 @@ pipeline {
                         echo 'Push latest para AWS ECR'
                         script {
                             docker.withRegistry('https://185721683284.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:awscredentials') {
-                                docker.image('digitalhouse-grupolovelace').push()
+                                docker.image('grupolovelace').push()
                             }
                         }
                     }
@@ -92,12 +92,12 @@ pipeline {
                     if(env.GIT_BRANCH=='origin/Jenkins-pipeline'){
  
                         docker.withRegistry('https://185721683284.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:awscredentials') {
-                            docker.image('digitalhouse-grupolovelace').pull()
+                            docker.image('grupolovelace').pull()
                         }
 
                         echo 'Deploy para Homologacao'
                         sh "hostname"
-                        sh "docker run -d --name digitalhouse-grupolovelace -p 8030:3000 185721683284.dkr.ecr.us-east-1.amazonaws.com/digitalhouse-grupolovelace:latest"
+                        sh "docker run -d --name grupolovelace -p 8030:3000 185721683284.dkr.ecr.us-east-1.amazonaws.com/grupolovelace:latest"
                         sh "docker ps"
                         sh 'sleep 10'
                         sh 'curl http://127.0.0.1:8030/api/v1/healthcheck'
@@ -132,13 +132,13 @@ pipeline {
                         }
 
 
-                        docker.withRegistry('https://185721683284.dkr.ecr.us-east-1.amazonaws.com/digitalhouse-grupolovelace', 'ecr:us-east-1:awscredentials') {
-                            docker.image('digitalhouse-grupolovelace').pull()
+                        docker.withRegistry('https://185721683284.dkr.ecr.us-east-1.amazonaws.com/grupolovelace', 'ecr:us-east-1:awscredentials') {
+                            docker.image('grupolovelace').pull()
                         }
 
                         echo 'Deploy para Desenvolvimento'
                         sh "hostname"
-                        sh "docker run -d --name digitalhouse-grupolovelace -p 8030:3000 185721683284.dkr.ecr.us-east-1.amazonaws.com/digitalhouse-grupolovelace:latest"
+                        sh "docker run -d --name grupolovelace -p 8030:3000 185721683284.dkr.ecr.us-east-1.amazonaws.com/grupolovelace:latest"
                         sh "docker ps"
                         sh 'sleep 10'
                         sh 'curl http://127.0.0.1:8030/api/v1/healthcheck'
