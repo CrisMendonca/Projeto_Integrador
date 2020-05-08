@@ -5,8 +5,8 @@ pipeline {
     environment {
 
         NODE_ENV="homologacao"
-        AWS_ACCESS_KEY="homologacaos3"
-        AWS_SECRET_ACCESS_KEY="homologacaos3"
+        AWS_ACCESS_KEY=""
+        AWS_SECRET_ACCESS_KEY=""
         AWS_SDK_LOAD_CONFIG="0"
         BUCKET_NAME="digitalhouse-grupolovelace-homologacao"
         REGION="us-east-1" 
@@ -55,11 +55,10 @@ pipeline {
                 stage('Test image') {
                     steps {
                         script {
-
                             docker.image("grupolovelace:latest").withRun('-p 8030:3000') { c ->
                                 sh 'docker ps'
                                 sh 'sleep 10'
-                                sh 'curl http://ec2-34-227-81-99.compute-1.amazonaws.com:8080//api/v1/healthcheck'
+                                sh 'curl http://ec2-34-227-81-99.compute-1.amazonaws.com:8030//api/v1/healthcheck'
                                 
                             }
                     
@@ -99,8 +98,9 @@ pipeline {
                         sh "hostname"
                         sh "docker stop grupolovelace"
                         sh "docker rm grupolovelace"
+                        //sh "docker run -d --name app1 -p 8030:3000 185721683284.dkr.ecr.us-east-1.amazonaws.com/grupolovelace:latest"
                          withCredentials([[$class:'AmazonWebServicesCredentialsBinding' 
-                            , credentialsId: 'homologacaos3']]) {
+                            , credentialsId 'homologacaos3']]) {
                         sh "docker run -d --name app1 -p 8030:3000 -e NODE_ENV=homologacao -e AWS_ACCESS_KEY=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e BUCKET_NAME=digitalhouse-grupolovelace-homologacao 185721683284.dkr.ecr.us-east-1.amazonaws.com/grupolovelace:latest"
                         }
                         sh "docker ps"
@@ -127,8 +127,8 @@ pipeline {
                         environment {
 
                             NODE_ENV="Producao"
-                            AWS_ACCESS_KEY="producaos3"
-                            AWS_SECRET_ACCESS_KEY="producaos3"
+                            AWS_ACCESS_KEY=""
+                            AWS_SECRET_ACCESS_KEY=""
                             AWS_SDK_LOAD_CONFIG="0"
                             BUCKET_NAME="digitalhouse-grupolovelace-producao"
                             REGION="us-east-1" 
@@ -145,8 +145,9 @@ pipeline {
                         sh "hostname"
                         sh "docker stop grupolovelace"
                         sh "docker rm grupolovelace"
+                        //sh "docker run -d --name app1 -p 8030:3000 185721683284.dkr.ecr.us-east-1.amazonaws.com/grupolovelace:latest"
                          withCredentials([[$class:'AmazonWebServicesCredentialsBinding' 
-                            , credentialsId: 'producaos3']]) {
+                            ,  credentialsId 'producaos3']]) {
                         sh "docker run -d --name app1 -p 8030:3000 -e NODE_ENV=Producao -e AWS_ACCESS_KEY=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e BUCKET_NAME=digitalhouse-grupolovelace-producao 185721683284.dkr.ecr.us-east-1.amazonaws.com/grupolovelace:latest"
                         }
                                               
