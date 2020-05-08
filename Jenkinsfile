@@ -107,7 +107,7 @@ pipeline {
                         
                         sh "docker ps"
                         sh 'sleep 10'
-                        sh 'curl 'http://127.0.0.1:8030/api/v1/healthcheck'
+                        sh 'curl http://127.0.0.1:8030/api/v1/healthcheck'
 
                     }
                 }
@@ -129,8 +129,8 @@ pipeline {
                         environment {
 
                             NODE_ENV="Producao"
-                            AWS_ACCESS_KEY=""
-                            AWS_SECRET_ACCESS_KEY=""
+                            AWS_ACCESS_KEY="123456"
+                            AWS_SECRET_ACCESS_KEY="asdfghjkkll"
                             AWS_SDK_LOAD_CONFIG="0"
                             BUCKET_NAME="digitalhouse-grupolovelace-producao"
                             REGION="us-east-1" 
