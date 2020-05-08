@@ -139,7 +139,7 @@ pipeline {
                         }
 
 
-                        docker.withRegistry('https://185721683284.dkr.ecr.us-east-1.amazonaws.com/grupolovelace', 'ecr:us-east-1:awscredentials') {
+                        docker.withRegistry('https://185721683284.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:awscredentials') {
                             docker.image('grupolovelace').pull()
                         }
 
