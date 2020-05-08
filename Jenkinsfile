@@ -59,7 +59,7 @@ pipeline {
                             docker.image("grupolovelace:latest").withRun('-p 8030:3000') { c ->
                                 sh 'docker ps'
                                 sh 'sleep 10'
-                                sh 'curl http://127.0.0.1:8030/api/v1/healthcheck'
+                                sh 'curl http://ec2-34-227-81-99.compute-1.amazonaws.com:8080//api/v1/healthcheck'
                                 
                             }
                     
