@@ -126,7 +126,7 @@ pipeline {
             
             steps { 
                 script {
-                    if(env.GIT_BRANCH=='origin/master'){
+                    if(env.GIT_BRANCH=='origin/homologacao'){
  
                         environment {
                             
