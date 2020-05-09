@@ -126,7 +126,7 @@ pipeline {
             
             steps { 
                 script {
-                    if(env.GIT_BRANCH=='origin/homologacao'){
+                    if(env.GIT_BRANCH=='origin/producao'){
  
                         environment {
                             
@@ -152,7 +152,7 @@ pipeline {
                         //sh "docker run -d --name app1 -p 8030:3000 185721683284.dkr.ecr.us-east-1.amazonaws.com/grupolovelace:latest"
                          withCredentials([[$class:'AmazonWebServicesCredentialsBinding' 
                             ,  credentialsId 'producaos3']]) {
-                           sh "docker run -d --name app1 -p ec2-18-232-87-105.compute-1.amazonaws.com:8030:80 -e NODE_ENV=Producao -e AWS_ACCESS_KEY=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e BUCKET_NAME=digitalhouse-grupolovelace-producao 185721683284.dkr.ecr.us-east-1.amazonaws.com/grupolovelace:latest"
+                           sh "docker run -d --name app1 -p 2-18-232-87-105:8030:80 -e NODE_ENV=Producao -e AWS_ACCESS_KEY=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e BUCKET_NAME=digitalhouse-grupolovelace-producao https://185721683284.dkr.ecr.us-east-1.amazonaws.com/grupolovelace:latest"
                         }                                   
                         sh "docker ps"
                         sh 'sleep 10'
