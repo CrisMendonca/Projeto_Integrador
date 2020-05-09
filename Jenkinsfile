@@ -126,7 +126,7 @@ pipeline {
             
             steps { 
                 script {
-                    if(env.GIT_BRANCH=='origin/producao'){
+                    if(env.GIT_BRANCH=='master'){
  
                         environment {
                             
