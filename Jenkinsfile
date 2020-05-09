@@ -1,6 +1,6 @@
 pipeline {
     
-    agent nonerun
+    agent none
     
     environment {
         
