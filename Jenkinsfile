@@ -56,10 +56,10 @@ pipeline {
                     steps {
                         script {
                             
-                            docker.image("grupolovelace:latest").withRun('-p 8030:3000') { c ->
+                            docker.image("grupolovelace:latest").withRun('-p 3000:3000') { c ->
                                 sh 'docker ps'
                                 sh 'sleep 10'
-                                sh 'curl http://127.0.0.1:8030/api/v1/healthcheck'
+                                sh 'curl http://127.0.0.1:3000/api/v1/healthcheck'
                                 
                             }
                     
@@ -101,10 +101,10 @@ pipeline {
                             sh "docker stop grupolovelace"
                             sh "docker rm grupolovelace"
                         }
-                        //sh "docker run -d --name app1 -p 8030:3000 185721683284.dkr.ecr.us-east-1.amazonaws.com/grupolovelace:latest"
+                        //sh "docker run -d --name app1 -p 3000:3000 185721683284.dkr.ecr.us-east-1.amazonaws.com/grupolovelace:latest"
                          withCredentials([[$class:'AmazonWebServicesCredentialsBinding' 
                              , credentialsId: 'homologacaos3']]) {
-                        sh "docker run -d --name app1 -p 8030:3000 -e NODE_ENV=homologacao -e AWS_ACCESS_KEY=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e BUCKET_NAME=digitalhouse-grupolovelace-homologacao 185721683284.dkr.ecr.us-east-1.amazonaws.com/grupolovelace:latest"
+                        sh "docker run -d --name app1 -p 3000:3000 -e NODE_ENV=homologacao -e AWS_ACCESS_KEY=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e BUCKET_NAME=digitalhouse-grupolovelace-homologacao 185721683284.dkr.ecr.us-east-1.amazonaws.com/grupolovelace:latest"
                         }
                         
                         sh "docker ps"
