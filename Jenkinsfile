@@ -101,7 +101,7 @@ pipeline {
                             sh "docker stop lovelace"
                             sh "docker rm lovelace"
                         }
-                        //sh "docker run -d --name lovelace -p 8030:3000 185721683284.dkr.ecr.us-east-1.amazonaws.com/grupolovelace:latest"
+                        //sh "docker run -d --name lovelace -p 8030:3000 185721683284.dkr.ecr.us-east-1.amazonaws.com/lovelace:latest"
                          withCredentials([[$class:'AmazonWebServicesCredentialsBinding' 
                              , credentialsId: 'homologacaos3']]) {
                         sh "docker run -d --name lovelace -p 8030:3000 -e NODE_ENV=homologacao -e AWS_ACCESS_KEY=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e BUCKET_NAME=digitalhouse-grupolovelace-homologacao 185721683284.dkr.ecr.us-east-1.amazonaws.com/grupolovelace:latest"
@@ -152,7 +152,7 @@ pipeline {
                         //sh "docker run -d --name lovelace -p 8030:3000 185721683284.dkr.ecr.us-east-1.amazonaws.com/lovelace:latest"
                          withCredentials([[$class:'AmazonWebServicesCredentialsBinding' 
                             ,  credentialsId: 'producaos3']]) {
-                           sh "docker run -d --name lovelace -p 2-18-232-87-105:8030:3000 -e NODE_ENV=Producao -e AWS_ACCESS_KEY=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e BUCKET_NAME=digitalhouse-grupolovelace-producao https://185721683284.dkr.ecr.us-east-1.amazonaws.com/grupolovelace:latest"
+                           sh "docker run -d --name lovelace -p 2-18-232-87-105:8030:3000 -e NODE_ENV=Producao -e AWS_ACCESS_KEY=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e BUCKET_NAME=digitalhouse-grupolovelace-producao https://185721683284.dkr.ecr.us-east-1.amazonaws.com/lovelace:latest"
                         }                                   
                         sh "docker ps"
                         sh 'sleep 10'
