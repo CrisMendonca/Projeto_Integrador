@@ -47,7 +47,7 @@ pipeline {
                     steps {
                         script {
                             print "Environment will be : ${env.NODE_ENV}"
-                            docker.build("grupolovelace:latest")
+                            docker.build("lovelace:latest")
                         }
                     }
                 }
@@ -56,7 +56,7 @@ pipeline {
                     steps {
                         script {
                             
-                            docker.image("grupolovelace:latest").withRun('-p 8030:3000') { c ->
+                            docker.image("lovelace:latest").withRun('-p 8030:3000') { c ->
                                 sh 'docker ps'
                                 sh 'sleep 10'
                                 sh 'curl http:/127.0.0.1:8030/api/v1/healthcheck'
@@ -72,7 +72,7 @@ pipeline {
                         echo 'Push latest para AWS ECR'
                         script {
                             docker.withRegistry('https://185721683284.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:awscredentials') {
-                                docker.image('grupolovelace').push()
+                                docker.image('lovelace').push()
                             }
                         }
                     }
@@ -92,19 +92,19 @@ pipeline {
                     if(env.GIT_BRANCH=='origin/homologacao'){
  
                         docker.withRegistry('https://185721683284.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:awscredentials') {
-                            docker.image('grupolovelace').pull()
+                            docker.image('lovelace').pull()
                         }
                         
                         echo 'Deploy para homologacao'
                         sh "hostname"
                         catchError{
-                            sh "docker stop grupolovelace"
-                            sh "docker rm grupolovelace"
+                            sh "docker stop lovelace"
+                            sh "docker rm lovelace"
                         }
-                        //sh "docker run -d --name grupolovelace -p 8030:3000 185721683284.dkr.ecr.us-east-1.amazonaws.com/grupolovelace:latest"
+                        //sh "docker run -d --name lovelace -p 8030:3000 185721683284.dkr.ecr.us-east-1.amazonaws.com/grupolovelace:latest"
                          withCredentials([[$class:'AmazonWebServicesCredentialsBinding' 
                              , credentialsId: 'homologacaos3']]) {
-                        sh "docker run -d --name grupolovelace -p 8030:80 -e NODE_ENV=homologacao -e AWS_ACCESS_KEY=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e BUCKET_NAME=digitalhouse-grupolovelace-homologacao 185721683284.dkr.ecr.us-east-1.amazonaws.com/grupolovelace:latest"
+                        sh "docker run -d --name lovelace -p 8030:3000 -e NODE_ENV=homologacao -e AWS_ACCESS_KEY=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e BUCKET_NAME=digitalhouse-grupolovelace-homologacao 185721683284.dkr.ecr.us-east-1.amazonaws.com/grupolovelace:latest"
                         }
                         
                         sh "docker ps"
@@ -142,17 +142,17 @@ pipeline {
                         
                         
                         docker.withRegistry('https://185721683284.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:awscredentials') {
-                            docker.image('grupolovelace').pull()
+                            docker.image('lovelace').pull()
                         }
                         
                         echo 'Deploy para Produção'
                         sh "hostname"
-                        sh "docker stop grupolovelace"
-                        sh "docker rm grupolovelace"
-                        //sh "docker run -d --name grupolovelace -p 8030:3000 185721683284.dkr.ecr.us-east-1.amazonaws.com/grupolovelace:latest"
+                        sh "docker stop lovelace"
+                        sh "docker rm lovelace"
+                        //sh "docker run -d --name lovelace -p 8030:3000 185721683284.dkr.ecr.us-east-1.amazonaws.com/lovelace:latest"
                          withCredentials([[$class:'AmazonWebServicesCredentialsBinding' 
                             ,  credentialsId: 'producaos3']]) {
-                           sh "docker run -d --name grupolovelace -p 2-18-232-87-105:8030:3000 -e NODE_ENV=Producao -e AWS_ACCESS_KEY=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e BUCKET_NAME=digitalhouse-grupolovelace-producao https://185721683284.dkr.ecr.us-east-1.amazonaws.com/grupolovelace:latest"
+                           sh "docker run -d --name lovelace -p 2-18-232-87-105:8030:3000 -e NODE_ENV=Producao -e AWS_ACCESS_KEY=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e BUCKET_NAME=digitalhouse-grupolovelace-producao https://185721683284.dkr.ecr.us-east-1.amazonaws.com/grupolovelace:latest"
                         }                                   
                         sh "docker ps"
                         sh 'sleep 10'
