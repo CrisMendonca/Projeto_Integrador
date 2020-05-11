@@ -6,8 +6,7 @@ const AWS = require('aws-sdk')
 var bodyParser = require('body-parser')
 var multer  = require('multer')
 var upload = multer({ dest: 'uploads/' })
-var express = require('express')
-// var expressLayouts = require('express-ejs-layouts')
+var expressLayouts = require('express-ejs-layouts')
 
 dotenv.config();
 
@@ -27,6 +26,7 @@ AWS.config.update({
 const s3 = new AWS.S3({});
 
 /* Setup App */
+var express = require('express'),
   app = express(),
   port = process.env.PORT || 3000;
 
@@ -34,7 +34,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 // app.use(express.static('public'));
 app.set('view engine', 'ejs')    // Setamos que nossa engine será o ejs
-//app.use(expressLayouts)          // Definimos que vamos utilizar o express-ejs-layouts na nossa aplicação
+app.use(expressLayouts)          // Definimos que vamos utilizar o express-ejs-layouts na nossa aplicação
 app.listen(port);
 
 
