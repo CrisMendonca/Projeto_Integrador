@@ -56,10 +56,10 @@ pipeline {
                     steps {
                         script {
                             
-                            docker.image("lovelace:latest").withRun('-p 8030:3000') { c ->
+                            docker.image("lovelace:latest").withRun('-p 80:3000') { c ->
                                 sh 'docker ps'
                                 sh 'sleep 10'
-                                sh 'curl http://ec2-34-227-81-99.compute-1.amazonaws.com:8030/api/v1/healthcheck'
+                                sh 'curl http://127.0.0.1:80/api/v1/healthcheck'
                                 
                             }
                     
