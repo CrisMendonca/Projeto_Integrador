@@ -9,13 +9,10 @@ Criar uma pipeline de entrega contínua da aplicação a ser armazenada na Cloud
 ### TECNOLOGIAS UTILIZADAS: 
 Ansible, Docker, Jenkins, AWS
 
-## ARQUITETURA
+## ARQUITETURA:
 
-
-
-
-
-
+![Imagem Projeto](https://user-images.githubusercontent.com/60946367/83334657-5989bf00-a27e-11ea-8ff4-2cef9ff5f284.png)
+[](url)
 
 ### Primeiros passos:
 #### 1. Configurar o ambiente para executar o plano de ação:
