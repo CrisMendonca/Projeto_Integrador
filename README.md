@@ -117,31 +117,31 @@ https://github.com/bgsouza/digitalhouse-devops-app
 
 #### Pipeline
 
-Pipeline executado com sucesso:
+##### Pipeline executado com sucesso:
 
-HealthCheck Homologação executado com sucesso:
+- HealthCheck Homologação executado com sucesso:
 
-HealthCheck Produção executado com sucesso:
+- HealthCheck Produção executado com sucesso:
 
-Output Pipeline de todos os passos:
+- Output Pipeline de todos os passos:
 
 #### Url
 
-HealthCheck Homologação executado com sucesso:
+- HealthCheck Homologação executado com sucesso:
 
-HealthCheck Produção executado com sucesso:
+- HealthCheck Produção executado com sucesso:
 
-Upload Homologação executado com sucesso:
+- Upload Homologação executado com sucesso:
 
-Upload Produção executado com sucesso:
+- Upload Produção executado com sucesso:
 
 #### AWS S3
 
-Buckets S3 criados:
+##### Buckets S3 criados:
 
-Bucket S3 Homolog com a imagem:
+- Bucket S3 Homolog com a imagem:
 
-Bucket S3 Produção com a imagem:
+- Bucket S3 Produção com a imagem:
  
  
 ### REFERÊNCIAS:
