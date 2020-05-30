@@ -30,9 +30,9 @@ $ aws configure
 $ aws iam list-access-keys
 $ aws ec2 describe-regions
  
-### Execução do projeto
+## EXECUÇÃO DO PROJETO: 
 #### 1. Customizar os Playbooks:
-	- Configurar a infraestrutura em aws_provisioning.yml (arquivo principal de configurações), aws_provisioning_vpc.yml, aws_provisioning_jenkins.yml, aws_provisioning_producao.yml e aws_provisioning_homolog.yml;
+- Configurar a infraestrutura em aws_provisioning.yml (arquivo principal de configurações), aws_provisioning_vpc.yml, aws_provisioning_jenkins.yml, aws_provisioning_producao.yml e aws_provisioning_homolog.yml;
 - Em aws.yml, configurar:
 AWS_access_key: "{{ AWSAccessKeyId }}"* > Credenciais AWS (está no arquivo criptografado vars/aws_credentials.yml).
 AWS_secret_key:"{{ AWSSecretKey }}"* > Credenciais AWS (está no arquivo criptografado vars/aws_credentials.yml).
@@ -52,7 +52,7 @@ sub_tag (Nome da Subnet, que é parte da VPC): "{{ projeto }}-subnet";
 Launch the new EC2 Instance 22 (Executar a nova instância EC2 de acordo com as variáveis do itens vars_files e o vars);
 Wait for SSH to come up (Aguardar o SSH chegar);
 Create AWS ECR (Criar a Amazon Elastic Container Registry, um tipo de repositório que armazena e gerencia as imagens de contêineres do Docker geradas pela pipeline).
-	- Em aws_provisioning_homolog.yml e aws_provisioning_producao.yml, criar estas tasks:
+- Em aws_provisioning_homolog.yml e aws_provisioning_producao.yml, criar estas tasks:
 Launch the new EC2 Instance 22;
 Wait for the SSH to come up;
 Create iam user “{{ name_aim_user_s3 }}” (Criar o usuário IAM);
@@ -64,7 +64,7 @@ Create S3 (Denomina o bucket criado como Simple Storage Service, que armazenará
 - install_jenkins_ec2-jenkins.yml deve instalar e configurar o Jenkins na EC2 master.
  
 #### 2. Provisionar EC2, S3, IAM e ECR na AWS
-	- Criar uma VPC (Virtual Private Cloud) e outros itens importantes para sua utilização (como Subnet e Security Group):
+- Criar uma VPC (Virtual Private Cloud) e outros itens importantes para sua utilização (como Subnet e Security Group):
 - Gerar uma key pair e salvá-la;
 - Criar 3 EC2 (uma para o Jenkins, uma para o ambiente de Homologação e outra para o ambiente de Produção), um ECR (Elastic Container Registry, que tem a função de armazenar e gerenciar as imagens de contêineres do Docker geradas pela pipeline), um user e um bucket S3; 
 $ ansible-playbook playbooks/aws_provisioning.yml
@@ -72,7 +72,7 @@ $ ansible-playbook playbooks/aws_provisioning.yml
 	$ ansible-inventory --graph aws_ec2
  
 #### 3. Configurar máquinas EC2
-	- Atualizar pacotes e instalar AWCCli, Java e Python nas 3 EC2:
+- Atualizar pacotes e instalar AWCCli, Java e Python nas 3 EC2:
 $ ansible-playbook playbooks/config_all-ec2.yml
 - Instalar o Docker nas 3 EC2:
 $ ansible-playbook playbooks/install_docker_all-ec2.yml
@@ -82,11 +82,11 @@ $ ansible-playbook playbooks/install_ansible_ec2-jenkins.yml
 $ ansible-playbook playbooks/install_jenkins_ec2-jenkins.yml
  
 #### 4. Configurar o Jenkins
-	- Entrar no terminal e acessar a url de acordo com o nome ou IP público gerado na AWS;
-	- Logar no Jenkins com usuário e senha definidos no playbook install_jenkins_ec2-jenkins.yml;
+- Entrar no terminal e acessar a url de acordo com o nome ou IP público gerado na AWS;
+- Logar no Jenkins com usuário e senha definidos no playbook install_jenkins_ec2-jenkins.yml;
 - Seguir o caminho:
 Gerenciar Jenkins > Gerenciador de Plugins > Disponíveis > Buscar e selecionar pipeline, docker pipeline, ssh, github, github api e amazon ecr;
-	- Acessar a EC2 via SSH:
+- Acessar a EC2 via SSH:
 ssh -i @ ssh -i .pem ubuntu@
 - Verificar o usuário Jenkins:
 $ id jenkins
@@ -104,7 +104,8 @@ Gerenciar Jenkins > Gerenciar nós > novo nó
 Credentials > Add Credentials (Global, SSH username e private key)
 - Adicionar Credenciais para acessar AWS ECR:
 Credentials > Add Credentials (AWS Credentials, Global, ID e Private Key AWS)
-5. Pipeline Jenkins
+
+#### 5. Pipeline Jenkins
 Com a aplicação pronta para release, é possível criar um Job, cuja função será realizar o deploy de forma automática.
  
  
