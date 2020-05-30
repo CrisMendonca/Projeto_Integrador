@@ -10,6 +10,13 @@ Criar uma pipeline de entrega contínua da aplicação a ser armazenada na Cloud
 Ansible, Docker, Jenkins, AWS
 
 ## ARQUITETURA
+
+
+
+
+
+
+
 ### Primeiros passos:
 #### 1. Configurar o ambiente para executar o plano de ação:
 - Instalar a VirtualBox;
