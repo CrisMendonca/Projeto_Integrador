@@ -131,12 +131,16 @@ https://github.com/bgsouza/digitalhouse-devops-app
 #### URL:
 
 #### HealthCheck Homologação executado com sucesso:
+![CHECKHOMOLOG](https://user-images.githubusercontent.com/60946367/83364829-71466d80-a37a-11ea-925e-02a7b37fa968.png)
 
 #### HealthCheck Produção executado com sucesso:
+![CHECK PROD](https://user-images.githubusercontent.com/60946367/83364865-ad79ce00-a37a-11ea-8141-f64868f211fd.png)
 
 #### Upload Homologação executado com sucesso:
+![UPLOAD HOMOLOGAÇÃO](https://user-images.githubusercontent.com/60946367/83364831-77d4e500-a37a-11ea-832a-91657a00804a.png)
 
 #### Upload Produção executado com sucesso:
+![UPLOAD PRODUÇÃO](https://user-images.githubusercontent.com/60946367/83364867-b1a5eb80-a37a-11ea-9052-02c0a534c020.png)
 
 
 #### AWS S3
