@@ -4,10 +4,10 @@
 Recebimento de uma aplicação em Node.js em desenvolvimento, com funcionalidades a serem passadas por teste de qualidade.
 
 ### PROJETO DA EQUIPE LOVELACE: 
-Criar uma pipeline de entrega contínua da aplicação a ser armazenada na Cloud
+Criar uma pipeline de entrega contínua da aplicação a ser armazenada na Cloud.
 
 ### TECNOLOGIAS UTILIZADAS: 
-Ansible, Docker, Jenkins, AWS
+Ansible, Docker, Jenkins, AWS.
 
 ## ARQUITETURA:
 
@@ -23,7 +23,7 @@ Ansible, Docker, Jenkins, AWS
 $ vi ~/.ansible/.vault_pass
 #### 3. Criar o arquivo aws_credentials.yml na pasta vars do repositório do projeto com as credenciais de segurança do usuário root da AWS:
 - Acessar o console da AWS com o user root e seguir o seguinte caminho: My Security Credentials > Access keys (access key ID and secret access key) > Create New Access Key;
-- Colocar as o AWSAccessKeyId e o AWSSecretKey em aws_credentials.yml;
+- Colocar o AWSAccessKeyId e o AWSSecretKey em aws_credentials.yml;
 - Copiar as informações do arquivo para futuro acesso;
 - Encriptar aws_credentials.yml:
 $ ansible-vault encrypt playbooks/vars/aws_credentials.yml
@@ -89,7 +89,7 @@ $ ansible-playbook playbooks/install_jenkins_ec2-jenkins.yml
 - Entrar no terminal e acessar a url de acordo com o nome ou IP público gerado na AWS;
 - Logar no Jenkins com usuário e senha definidos no playbook install_jenkins_ec2-jenkins.yml;
 - Seguir o caminho:
-Gerenciar Jenkins > Gerenciador de Plugins > Disponíveis > Buscar e selecionar: Git, Github, Pipeline, Docker pipeline, AWS Code Pipeline, SSH, SSH Agent, SSH Build Agent, SSH Credentials;
+Gerenciar Jenkins > Gerenciador de Plugins > Disponíveis > Buscar e selecionar: Github, Pipeline, Docker pipeline, AWS Code Pipeline, SSH, SSH Agent, SSH Build Agent, SSH Credentials;
 - Acessar a EC2 via SSH:
 ssh -i @ ssh -i .pem ubuntu@
 - Verificar o usuário Jenkins:
@@ -117,27 +117,27 @@ Aplicação Node.JS utilizada
 https://github.com/bgsouza/digitalhouse-devops-app
  
  
-### EVIDÊNCIAS:
+### EVIDÊNCIAS
 
-#### Pipeline
+#### PIPELINE:
 
-##### Pipeline executado com sucesso:
+##### Pipeline Homologação executado com sucesso:
+![HOMOLOG](https://user-images.githubusercontent.com/60946367/83364533-44915680-a378-11ea-8828-0bed5143f3a4.jpg)
 
-- HealthCheck Homologação executado com sucesso:
+##### Pipeline Produção executado com sucesso:
+![Produção](https://user-images.githubusercontent.com/60946367/83364636-00eb1c80-a379-11ea-8ac4-207d43557d70.png)
 
-- HealthCheck Produção executado com sucesso:
 
-- Output Pipeline de todos os passos:
+#### URL:
 
-#### Url
+#### HealthCheck Homologação executado com sucesso:
 
-- HealthCheck Homologação executado com sucesso:
+#### HealthCheck Produção executado com sucesso:
 
-- HealthCheck Produção executado com sucesso:
+#### Upload Homologação executado com sucesso:
 
-- Upload Homologação executado com sucesso:
+#### Upload Produção executado com sucesso:
 
-- Upload Produção executado com sucesso:
 
 #### AWS S3
 
