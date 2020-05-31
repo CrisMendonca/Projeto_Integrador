@@ -1,0 +1,34 @@
+- name: "Ansible para configurar VM"
+  hosts: localhost
+  connection: local
+  gather_facts: False
+  
+  vars_files:
+    - vars/aws_credentials.yml
+    - vars/aws.yml
+
+  tasks:
+   
+    - name: Create iam user "{{ name_aim_user_s3 }}"
+      iam_user:
+        aws_access_key: "{{ AWS_access_key }}"
+        aws_secret_key: "{{ AWS_secret_key }}"          
+        name: "{{ name_aim_user_s3 }}"
+        managed_policy:
+          - arn:aws:iam::aws:policy/AmazonS3FullAccess
+        state: present
+      register: iuser
+
+
+    - name: Create S3
+      s3_bucket:
+        aws_access_key: "{{ AWS_access_key }}"
+        aws_secret_key: "{{ AWS_secret_key }}"          
+        name: "{{ item }}"
+        region: "{{ region }}"
+        state: present
+        policy: "{{lookup('file', 'my_bucket_policy.json')}}"       
+        mode: create
+      loop:
+        - dh-pi-devops-dev
+        - dh-pi-devops-prod

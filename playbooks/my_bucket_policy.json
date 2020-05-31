@@ -1,0 +1,26 @@
+{
+	"Id": "Policy1",
+	"Statement": [
+	{
+		"Action": [
+			"s3:ListBucket",
+                  	"s3:DeleteObject",
+	                "s3:GetObject",
+                        "s3:PutObject",
+                        "s3:PutObjectAcl"
+		],
+		"Effect": "Allow",
+		"Resource": [
+		
+			"arn:aws:s3:::{{item}}/*",
+                	"arn:aws:s3:::{{item}}"
+		],
+		"Principal": {
+			"AWS": [
+				"*"
+			]
+		}
+	}
+	]	
+                
+}
