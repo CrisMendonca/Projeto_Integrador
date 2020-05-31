@@ -121,35 +121,36 @@ https://github.com/bgsouza/digitalhouse-devops-app
 
 #### PIPELINE:
 
-##### Pipeline Homologação executado com sucesso:
+##### 1. Pipeline Homologação executado com sucesso:
 ![HOMOLOG](https://user-images.githubusercontent.com/60946367/83364533-44915680-a378-11ea-8828-0bed5143f3a4.jpg)
 
-##### Pipeline Produção executado com sucesso:
+##### 2. Pipeline Produção executado com sucesso:
 ![Produção](https://user-images.githubusercontent.com/60946367/83364636-00eb1c80-a379-11ea-8ac4-207d43557d70.png)
 
 
 #### URL:
 
-#### HealthCheck Homologação executado com sucesso:
+##### 1. HealthCheck Homologação executado com sucesso:
 ![CHECKHOMOLOG](https://user-images.githubusercontent.com/60946367/83364829-71466d80-a37a-11ea-925e-02a7b37fa968.png)
 
-#### HealthCheck Produção executado com sucesso:
+##### 2. HealthCheck Produção executado com sucesso:
 ![CHECK PROD](https://user-images.githubusercontent.com/60946367/83364865-ad79ce00-a37a-11ea-8141-f64868f211fd.png)
 
-#### Upload Homologação executado com sucesso:
+##### 1. Upload Homologação executado com sucesso:
 ![UPLOAD HOMOLOGAÇÃO](https://user-images.githubusercontent.com/60946367/83364831-77d4e500-a37a-11ea-832a-91657a00804a.png)
 
-#### Upload Produção executado com sucesso:
+##### 2. Upload Produção executado com sucesso:
 ![UPLOAD PRODUÇÃO](https://user-images.githubusercontent.com/60946367/83364867-b1a5eb80-a37a-11ea-9052-02c0a534c020.png)
 
 
 #### AWS S3
 
-##### Buckets S3 criados:
+##### Buckets S3 com as imagens pós-upload:
 
 - Bucket S3 Homolog com a imagem:
-
+![BUCKET HOMOLOG](https://user-images.githubusercontent.com/60946367/83365009-a8694e80-a37b-11ea-8762-6553da368b1e.png)
 - Bucket S3 Produção com a imagem:
+![BUCKET PROD](https://user-images.githubusercontent.com/60946367/83365045-d6e72980-a37b-11ea-9f1c-56f551d694a3.png)
  
  
 ### REFERÊNCIAS:
